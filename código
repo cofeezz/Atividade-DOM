@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista Interativa</title>
+</head>
+<body>
+
+    <h2>Lista Interativa</h2>
+
+    <input id="campo" type="text" placeholder="Digite algo aqui...">
+    <button id="addBotao">Adicionar</button>
+
+    <ul id="lista"></ul>
+
+    <script>
+        let campo = document.getElementById("campo");
+        let addBotao = document.getElementById("addBotao");
+        let lista = document.getElementById("lista");
+
+        addBotao.onclick = function() {
+            let txt = campo.value;
+
+            if (txt === "") {
+                alert("Digite algo!");
+                return;
+            }
+
+            let li = document.createElement("li");
+            li.innerHTML = txt + " ";
+
+            let botao = document.createElement("button");
+            botao.innerText = "Remover";
+
+            botao.onclick = function() {
+                lista.removeChild(li);
+            }
+
+            li.appendChild(botao);
+            lista.appendChild(li);
+
+            campo.value = "";
+        }
+
+        campo.addEventListener("keypress", function(e){
+            if(e.key === "Enter"){
+                addBotao.click();
+            }
+        });
+    </script>
+
+</body>
+</html>
